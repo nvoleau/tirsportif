@@ -62,10 +62,14 @@ angular.module('app.routes', [])
     
       
         
-    .state('resume', {
-      url: '/Resume',
+    .state('menu.resume', {
+      url: '/resume',
+       views: {
+        'side-menu' :{
       templateUrl: 'templates/resume.html',
       controller: 'resumeCtrl'
+           }
+      }
     })
         
       

@@ -5,9 +5,11 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic','ngCouchbaseLite', 'app.controllers', 'app.routes', 'app.services', 'app.directives','ionic-material', 'ionMdInput'])
+var apptir = angular.module('app', ['ionic','ngCouchbaseLite', 'app.controllers', 'app.routes', 'app.services', 'app.directives','ionic-material', 'ionMdInput'])
 
-.run(function($ionicPlatform, $couchbase) {
+var db = null;
+
+apptir.run(function($ionicPlatform, $couchbase) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,7 +21,7 @@ angular.module('app', ['ionic','ngCouchbaseLite', 'app.controllers', 'app.routes
       StatusBar.styleDefault();
     }
 
-     var db = null;
+     
 
 if(!window.cblite) {
             alert("Couchbase Lite is not installed!");
@@ -32,23 +34,23 @@ if(!window.cblite) {
                 db = new $couchbase(url, "tirsportif");
                 // 2
                 db.createDatabase().then(function(result) {
-                    var todoViews = {
+                    var entrainementViews = {
                         lists: {
                             map: function(doc) {
-                                if(doc.type == "list" && doc.title) {
-                                    emit(doc._id, {title: doc.title, rev: doc._rev})
+                                if(doc.type == "list" && doc.discipline) {
+                                    emit(doc._id, {discipline: doc.discipline,duree: doc.duree, rev: doc._rev})
                                 }
                             }.toString()
                         },
                         tasks: {
                             map: function(doc) {
-                                if(doc.type == "task" && doc.title && doc.list_id) {
+                                if(doc.type == "entrainement" && doc.title && doc.list_id) {
                                     emit(doc.list_id, {title: doc.title, list_id: doc.list_id, rev: doc._rev})
                                 }
                             }.toString()
                         }
                     };
-                    db.createDesignDocument("_design/todo", todoViews);
+                    db.createDesignDocument("_design/entrainement", entrainementViews);
                     db.listen();
                 }, function(error) {
                     // There was an error creating the database
