@@ -5,11 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var apptir = angular.module('app', ['ionic','ngCouchbaseLite', 'app.controllers', 'app.routes', 'app.services', 'app.directives','ionic-material', 'ionMdInput'])
+var apptir = angular.module('app', ['ionic','app.controllers', 'app.routes', 'app.services', 'app.directives','ionic-material', 'ionMdInput']);
 
-var db = null;
+var localDB = new PouchDB("tirsportif");
+//var remoteDB = new PouchDB("http://[your database server ip]:5984/todos");
 
-apptir.run(function($ionicPlatform, $couchbase) {
+apptir.run(function($ionicPlatform) {
+    //localDB.sync(remoteDB, {live: true, retry: true}); qd j'aurais la bdd remote
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,43 +21,7 @@ apptir.run(function($ionicPlatform, $couchbase) {
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
-    }
+    }     
 
-     
-
-if(!window.cblite) {
-            alert("Couchbase Lite is not installed!");
-        } else {
-            cblite.getURL(function(err, url) {
-                if(err) {
-                    alert("There was an error getting the database URL");
-                    return;
-                }
-                db = new $couchbase(url, "tirsportif");
-                // 2
-                db.createDatabase().then(function(result) {
-                    var entrainementViews = {
-                        lists: {
-                            map: function(doc) {
-                                if(doc.type == "list" && doc.discipline) {
-                                    emit(doc._id, {discipline: doc.discipline,duree: doc.duree, rev: doc._rev})
-                                }
-                            }.toString()
-                        },
-                        tasks: {
-                            map: function(doc) {
-                                if(doc.type == "entrainement" && doc.title && doc.list_id) {
-                                    emit(doc.list_id, {title: doc.title, list_id: doc.list_id, rev: doc._rev})
-                                }
-                            }.toString()
-                        }
-                    };
-                    db.createDesignDocument("_design/entrainement", entrainementViews);
-                    db.listen();
-                }, function(error) {
-                    // There was an error creating the database
-                });
-             });
-         }
     });
 })

@@ -1,0 +1,344 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sea",
+				"seances"
+			],
+			[
+				"ma",
+				"maintenant_plus_trente"
+			],
+			[
+				"dur",
+				"duree_validite"
+			],
+			[
+				"date",
+				"date_encodage"
+			],
+			[
+				"dat",
+				"date_encodage"
+			],
+			[
+				"de",
+				"decoded"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"json",
+				"json_input"
+			],
+			[
+				"me",
+				"message_decode"
+			],
+			[
+				"DE",
+				"DecodeAES"
+			],
+			[
+				"ro",
+				"rows_count"
+			],
+			[
+				"row",
+				"row_list"
+			],
+			[
+				"app",
+				"application_receptrice"
+			],
+			[
+				"applo",
+				"application_demandeuse"
+			],
+			[
+				"c",
+				"cursor"
+			],
+			[
+				"fo",
+				"form"
+			],
+			[
+				"A",
+				"APPLICATION"
+			],
+			[
+				"PS",
+				"PASSWORD"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"s",
+				"status_code"
+			],
+			[
+				"mes",
+				"message_decrypte"
+			],
+			[
+				"cl",
+				"cle_cryptage"
+			],
+			[
+				"a",
+				"ARC4"
+			],
+			[
+				"b",
+				"branche"
+			],
+			[
+				"ini",
+				"initSearch"
+			],
+			[
+				"data_l",
+				"data_layer"
+			],
+			[
+				"geo",
+				"geo_data"
+			],
+			[
+				"gl",
+				"gl"
+			],
+			[
+				"L",
+				"Loisirs"
+			],
+			[
+				"des",
+				"designation"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"Vca",
+				"vCABrutUnitaire"
+			],
+			[
+				"e",
+				"else"
+			],
+			[
+				"vF",
+				"vForcePrix"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 81.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 118.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/www/templates/auth-signin.html",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/www/templates/auth-signup.html",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/www/templates/bucket-list.html",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/www/css/style.css",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/www/js/routes.js",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/config.xml",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/README.md",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/www/js/app.js",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/www/js/controllers.js",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/www/templates/listShoot.html",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/www/templates/creation.html",
+		"/C/DEVELOPPEMENT/Shoot/Shootfft/www/index.html",
+		"/C/Users/nvoleau/Downloads/shhot/www/index.html",
+		"/C/Users/nvoleau/Downloads/shhot/www/js/app.js",
+		"/C/Users/nvoleau/Downloads/shhot/www/lib/lokijs/loki-cordova-fs-adapter.js",
+		"/C/Users/nvoleau/Downloads/shhot/www/lib/lokijs/loki-angular.js",
+		"/C/Users/nvoleau/Downloads/shhot/www/lib/ionic/js/lokijs/loki-angular.js",
+		"/C/Users/nvoleau/Downloads/shhot/www/lib/ionic/js/lokijs/lokijs.min.js",
+		"/C/Users/nvoleau/Documents/dev/projsql/mysql.py",
+		"/C/Users/nvoleau/Documents/dev/projsql/partenaire.py",
+		"/C/Users/nvoleau/Documents/dev/projsql/tournee.py",
+		"/C/Users/nvoleau/Documents/dev/projsql/toto.txt",
+		"/C/Users/nvoleau/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/nvoleau/Documents/dev/projsql/code connection sql serveur.py",
+		"/C/Users/nvoleau/Documents/dev/projsql/tutu.txt",
+		"/C/Users/nvoleau/Documents/DIGITAL - Tarifaire/reprise ZTCE.sql",
+		"/C/Users/nvoleau/Documents/DIGITAL - Tarifaire/reprise PRC.sql",
+		"/C/Users/nvoleau/Documents/DIGITAL - Tarifaire/reprise ZTp.sql",
+		"/C/Users/nvoleau/Documents/DIGITAL - Tarifaire/reprise ZTCR.sql",
+		"/C/Users/nvoleau/Downloads/parallax/index.html",
+		"/C/Users/nvoleau/Downloads/parallax/stype.css",
+		"/C/Users/nvoleau/Documents/DIGITAL - Tarifaire/reprise ZTG.sql",
+		"/C/Users/nvoleau/Downloads/jquery190.js",
+		"/F/app.js",
+		"/C/Users/nvoleau/Documents/DIGITAL - Tarifaire/reprise ZTs.sql",
+		"/C/Users/nvoleau/Documents/DIGITAL - Tarifaire/reprise ZTPE.sql",
+		"/C/Users/nvoleau/Documents/DIGITAL - Tarifaire/reprise ztcn.sql",
+		"/C/Users/nvoleau/Downloads/functions.php",
+		"/C/Users/nvoleau/Downloads/options.php",
+		"/F/appafter.js",
+		"/C/Users/nvoleau/Downloads/jquery-parallax-1-1-3.js",
+		"/C/Users/nvoleau/Documents/_detail.js"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"$JAVA_OPTS",
+			"$CATALINA_OPTS",
+			"JAVA_OPTS",
+			"getAllLignesDatesLivraison(oc, code_pt_livr, dateDeb, dateFin);",
+			"getAllLignesCommandes(oc, client)",
+			"marge",
+			"vDvc_maj",
+			"gettarification",
+			"top.fctCheckNumber",
+			"bcb",
+			"nQuantite",
+			"fctGetTarification",
+			"fct",
+			"fctGetTarification",
+			"fctBoutonSaveUpDate",
+			"save",
+			"force",
+			"bva",
+			"bcva",
+			"save",
+			"fctDeltaQuantite",
+			"fctAppelBapi",
+			"vBCVA",
+			"vCABrutUnitaire",
+			"fctgettar",
+			"fctcheckprix",
+			"init",
+			"bva"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"getInfoDetailClient(oc, code);",
+			"getAllLignesDatesLivraison(oc, code_pt_livr, dateDeb, dateFin)"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 228.0,
+	"status_bar_visible": true
+}
