@@ -1,28 +1,52 @@
-<ion-view title="Entrainement">
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <form class="list">
-            <ion-toggle toggle-class="toggle-positive">Toggle</ion-toggle>
-            <ion-radio>Radio</ion-radio>
-            <label class="item item-input">
-                <span class="input-label">Input</span>
-                <input type="text" placeholder="">
-            </label>
-            <div class="spacer" style="width: 300px; height: 49px;"></div>
-            <ion-item class="range range-positive">Lacher
-                <input type="range" value="0" min="0" max="10">
+
+    <ion-modal-view>
+      <ion-header-bar>
+        <h1 class="title">{{ action }} Entrainement</h1> 
+        <div class="buttons">
+        <button ng-hide="isAdd" ng-click="deleteEntrainement()" class="button button-icon icon ion-trash-a"></button>
+        </div>
+      </ion-header-bar>
+      <ion-content>
+        <div class="list list-inset">
+          <label class="item item-input">
+          <input type="text" placeholder="Name" ng-model="entrainement.Name">
+          </label>
+          <label class="item item-input">
+          <input type="date" placeholder="Date" ng-model="entrainement.Date">
+          </label>
+           <label class="item item-input">
+          <input type="text" placeholder="Heure" ng-model="entrainement.Heure">
+          </label>
+           <label class="item item-input">
+          <input type="text" placeholder="Lieu" ng-model="entrainement.Lieu">
+          </label>
+          <label class="item item-input">
+          <input type="number" placeholder="Nombre de coup tiré" ng-model="entrainement.nb">
+          </label>
+          <ion-item class="range range range-royal">Serrage
+            <input type="range" name="Serrage" min="0" max="10" value="0" ng-model="entrainement.technique.serrage"> {{entrainement.technique.serrage}}/10
             </ion-item>
-            <ion-item class="range range-positive">Position
-                <input type="range" value="0" min="0" max="10">
+          <ion-item class="range range-positive">Prise en main
+            <input type="range" name="Prise en main" min="0" max="10" value="0" ng-model="entrainement.technique.prisemain"> {{entrainement.technique.prisemain}}/10
+          </ion-item>
+          <ion-item class="range range-positive">Lacher
+            <input type="range" name="Lacher" min="0" max="10" value="0" ng-model="entrainement.technique.lacher"> {{entrainement.technique.lacher}}/10
+          </ion-item>
+          <ion-item class="range range-positive">Position
+            <input type="range" name="Position" min="0" max="10" value="0" ng-model="entrainement.technique.position"> {{entrainement.technique.position}}/10
+          </ion-item>
+          <ion-item class="range range-positive">T.A.S
+            <input type="range" name="T.A.S" min="0" max="10" value="0" ng-model="entrainement.technique.tas"> {{entrainement.technique.tas}}/10
+          </ion-item>
+          <ion-item class="range range-positive">Visée
+            <input type="range" name="Visée" min="0" max="10" value="0" ng-model="entrainement.technique.visee"> {{entrainement.technique.visee}}/10
+          </ion-item>
+          <ion-item class="range range-positive">Tenue
+            <input type="range" name="Tenue" min="0" max="10" value="0" ng-model="entrainement.technique.tenue"> {{entrainement.technique.tenue}}/10
             </ion-item>
-            <ion-item class="range range-positive">Visée
-                <input type="range" value="0" min="0" max="10">
-            </ion-item>
-            <ion-item class="range range-positive">T.A.S
-                <input type="range" value="0" min="0" max="10">
-            </ion-item>
-            <ion-item class="range range-positive">Tenue
-                <input type="range" value="0" min="0" max="10">
-            </ion-item>
-        </form>
-    </ion-content>
-</ion-view>
+        </div>
+        <div class="padding">
+          <button ng-click="saveEntrainement()" class="button button-block button-positive activated">Enregistrer</button>
+        </div>
+      </ion-content>
+    </ion-modal-view>

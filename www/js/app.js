@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 var apptir = angular.module('app', ['ionic','app.controllers', 'app.routes', 'app.services', 'app.directives','ionic-material', 'ionMdInput']);
 
-var localDB = new PouchDB("tirsportif");
+
 //var remoteDB = new PouchDB("http://[your database server ip]:5984/todos");
 
 apptir.run(function($ionicPlatform) {

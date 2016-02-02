@@ -1,16 +1,20 @@
-<ion-view title="Mes entrainements">
+<ion-view>
 
+	<ion-header-bar class="bar-stable">
+      <div class="buttons">
+        <button ng-click="showAddEntrainementModal()" class="button button-icon icon ion-plus"></button>
+      </div>
+    </ion-header-bar>
     <ion-content>
-      
+       <div class="buttons">
+        <button ng-click="showAddEntrainementModal()" class="button button-icon icon ion-plus"></button>
+      </div>
        <ion-list>
-         <ion-item ng-repeat="entrainement in entrainements | orderBy:'done'">
-           <ion-checkbox ng-model="entrainement.done" ng-change="update(entrainement)">{{entrainement.title}}</ion-checkbox>
+         <ion-item ng-repeat="entrainement in entrainements" ng-click="showEditEntrainementModal(entrainement)">
+            <div style="float: left"> {{entrainement.Name}}</div>
+            <div style="float: right">{{entrainement.Date | date:"dd MMMM yyyy" }}</div>
          </ion-item>
        </ion-list>
-
-       <button class="right button button-icon icon ion-plus" ng-click="create()"></button>
-       <ion-item collection-repeat="entrainement in entrainements">
-    {{entrainement.title}}
-  </ion-item>
      </ion-content>
+    
 </ion-view>

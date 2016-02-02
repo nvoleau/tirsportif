@@ -1,16 +1,10 @@
 angular.module('app.services', [])
 
-.factory('BlankFactory', [function(){
 
-}])
-
-.service('BlankService', [function(){
-
-}])
 //http://frontmag.no/artikler/utvikling/offline-data-synchronization-ionic
-.factory('EntrainementService', ['$q', EntrainementService]);
+.factory('entrainementService', ['$q', entrainementService]);
 
-function EntrainementService($q) {  
+function entrainementService($q) {  
     var _db;    
 
     // We'll need this later.
@@ -29,6 +23,7 @@ function EntrainementService($q) {
     function initDB() {
         // Creates the database or opens if it already exists
         _db = new PouchDB('shoot');
+        console.log('init');
     };
 
     function addEntrainement(entrainement) {  
@@ -50,7 +45,7 @@ function EntrainementService($q) {
                   // so let's map the array to contain just the .doc objects.
                   _entrainements = docs.rows.map(function(row) {
                       // Dates are not automatically converted from a string.
-                      //row.doc.Date = new Date(row.doc.Date);
+                      row.doc.Date = new Date(row.doc.Date);
                       return row.doc;
                   });
 
@@ -65,9 +60,10 @@ function EntrainementService($q) {
           return $q.when(_entrainements);
       }
     };
-}
 
-function onDatabaseChange(change) {  
+
+
+    function onDatabaseChange(change) {  
     var index = findIndex(_entrainements, change.id);
     var entrainement = _entrainements[index];
 
@@ -93,3 +89,6 @@ function findIndex(array, id) {
     }
     return low;
 }
+    
+}
+

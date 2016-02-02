@@ -48,19 +48,7 @@ angular.module('app.routes', [])
       }
     })
         
-      
-    
-      
-        
-    .state('entrainement', {
-      url: '/entrainement',
-      templateUrl: 'templates/entrainement.html',
-      controller: 'entrainementCtrl'
-    })
-        
-      
-    
-      
+            
         
     .state('menu.resume', {
       url: '/resume',
