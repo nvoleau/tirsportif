@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var apptir = angular.module('app', ['ionic','app.controllers', 'app.routes', 'app.services', 'app.directives','ionic-material', 'ionMdInput']);
+var apptir = angular.module('app', ['ionic','app.controllers', 'app.routes', 'app.services', 'app.directives','ionic-material', 'ionMdInput','nvd3']);
 
 
 //var remoteDB = new PouchDB("http://[your database server ip]:5984/todos");
