@@ -22,7 +22,7 @@ function entrainementService($q) {
 
     function initDB() {
         // Creates the database or opens if it already exists
-        _db = new PouchDB('shoot');
+        _db = new PouchDB('shootTir');
         console.log('init');
     };
 
