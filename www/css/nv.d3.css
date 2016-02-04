@@ -1,4 +1,4 @@
-/* nvd3 version 1.8.2-dev (https://github.com/novus/nvd3) 2016-02-02 */
+/* nvd3 version 1.8.1 (https://github.com/novus/nvd3) 2015-06-15 */
 .nvd3 .nv-axis {
     pointer-events:none;
     opacity: 1;
@@ -408,11 +408,8 @@ svg.nvd3-svg {
     stroke-opacity: 1;
 }
 
-.nvd3.nv-pie path {
-    fill-opacity: .7;
-}
 .nvd3.nv-pie .hover path {
-    fill-opacity: 1;
+    fill-opacity: .7;
 }
 .nvd3.nv-pie .nv-label {
     pointer-events: none;
@@ -595,10 +592,7 @@ svg.nvd3-svg {
 }
 
 .nvtooltip table td.key {
-    font-weight: normal;
-}
-.nvtooltip table td.key.total {
-    font-weight: bold;
+    font-weight:normal;
 }
 .nvtooltip table td.value {
     text-align: right;

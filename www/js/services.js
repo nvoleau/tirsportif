@@ -26,8 +26,10 @@ function entrainementService($q) {
         console.log('init');
     };
 
-    function addEntrainement(entrainement) {  
-      return $q.when(_db.post(entrainement));
+    function addEntrainement(entrainement) { 
+      //permet de classer les documents
+      entrainement._id = entrainement.Date.toJSON()+'/'+new Date().toJSON(); 
+      return $q.when(_db.put(entrainement));
     };
     function updateEntrainement(entrainement) {  
     return $q.when(_db.put(entrainement));
@@ -89,6 +91,6 @@ function findIndex(array, id) {
     }
     return low;
 }
-    
+
 }
 
