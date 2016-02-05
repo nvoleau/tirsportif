@@ -102,93 +102,37 @@ angular.module('app.controllers', [])
 
             t = entrainements;
 
+            console.log(entrainements);
+
             for (var i = 0; i < t.length; i++) {
-                aAction.push(i+1);
-                aPrise.push(t[i].technique.prisemain);
-                aSerrage.push(t[i].technique.serrage);
-                aLacher.push(t[i].technique.lacher);
+                //console.log(t[i].Language);
+                console.log("-----");
+                if(t[i].technique.prisemain != 'undefined'){
+                    console.log("-----");
+                     console.log(t[i].technique.prisemain);
+                    //aAction.push(i+1);
+                    aPrise.push(t[i].technique.prisemain);
+                    aSerrage.push(t[i].technique.serrage);
+                    aLacher.push(t[i].technique.lacher);
+                }
             }
 
-            $scope.labels = aAction;
-            $scope.series = ['Prise en Main','Serrage','Lacher'];
-            $scope.data=[aPrise,aSerrage,aLacher];
+            //$scope.labels = aAction;
+            //$scope.series = ['Prise en Main','Serrage','Lacher'];
+            //$scope.data=[aPrise,aSerrage,aLacher];
 
-            $scope.onClick = function (points, evt) {
+            /**$scope.onClick = function (points, evt) {
                 console.log(points, evt);
-            };
+            };**/
 
-            $scope.datatt = setDataGraph(entrainements);
+            $scope.data = setDataGraph(entrainements);
 
-
-
+            $scope.dataDonut = entrainementService.getLastEntrainement();
 
         });
     });
-        //et=entrainementService.getAllEntrainements();
-        //entrainementService.getAllEntrainements().then(function(entrainements) {
-          //  $scope.entrainements = entrainements;
-        //});
-
-
-$scope.optionsTps = {
-            chart: {
-                type: 'lineChart',
-                height: 450,
-                margin : {
-                    top: 20,
-                    right: 20,
-                    bottom: 40,
-                    left: 55
-                },
-                x: function(d){ return d.x; },
-                y: function(d){ return d.y; },
-                useInteractiveGuideline: true,
-                dispatch: {
-                    stateChange: function(e){ console.log("stateChange"); },
-                    changeState: function(e){ console.log("changeState"); },
-                    tooltipShow: function(e){ console.log("tooltipShow"); },
-                    tooltipHide: function(e){ console.log("tooltipHide"); }
-                },
-                xAxis: {
-                    axisLabel: 'Date',
-                    tickFormat: function(d) {
-                        return d3.time.format('%d/%m/%y')(new Date(d));
-                    },
-                    showMaxMin: false,
-                    staggerLabels: true
-                },
-                yAxis: {
-                    axisLabel: 'point (v)',
-                    axisLabelDistance: -10
-                },
-                callback: function(chart){
-                    console.log("!!! lineChart callback !!!");
-                }
-            },
-            title: {
-                enable: true,
-                text: 'Title for Line Chart'
-            },
-            subtitle: {
-                enable: true,
-                text: 'Subtitle for simple line chart. Lorem ipsum dolor sit amet, at eam blandit sadipscing, vim adhuc sanctus disputando ex, cu usu affert alienum urbanitas.',
-                css: {
-                    'text-align': 'center',
-                    'margin': '10px 13px 0px 7px'
-                }
-            },
-            caption: {
-                enable: true,
-                html: '<b>Figure 1.</b> Lorem ipsum dolor sit amet, at eam blandit sadipscing, <span style="text-decoration: underline;">vim adhuc sanctus disputando ex</span>, cu usu affert alienum urbanitas. <i>Cum in purto erat, mea ne nominavi persecuti reformidans.</i> Docendi blandit abhorreant ea has, minim tantas alterum pro eu. <span style="color: darkred;">Exerci graeci ad vix, elit tacimates ea duo</span>. Id mel eruditi fuisset. Stet vidit patrioque in pro, eum ex veri verterem abhorreant, id unum oportere intellegam nec<sup>[1, <a href="https://github.com/krispo/angular-nvd3" target="_blank">2</a>, 3]</sup>.',
-                css: {
-                    'text-align': 'justify',
-                    'margin': '10px 13px 0px 7px'
-                }
-            }
-        };
-
-   
-$scope.optionstt = {
+        
+$scope.options = {
             chart: {
                 type: 'lineChart',
                 height: 450,
@@ -226,10 +170,10 @@ $scope.optionstt = {
             },
             title: {
                 enable: true,
-                text: 'Title for Line Chart'
+                text: 'Suivis des entrainement'
             },
             subtitle: {
-                enable: true,
+                enable: false,
                 text: 'Subtitle for simple line chart. Lorem ipsum dolor sit amet, at eam blandit sadipscing, vim adhuc sanctus disputando ex, cu usu affert alienum urbanitas.',
                 css: {
                     'text-align': 'center',
@@ -237,7 +181,7 @@ $scope.optionstt = {
                 }
             },
             caption: {
-                enable: true,
+                enable: false,
                 html: '<b>Figure 1.</b> Lorem ipsum dolor sit amet, at eam blandit sadipscing, <span style="text-decoration: underline;">vim adhuc sanctus disputando ex</span>, cu usu affert alienum urbanitas. <i>Cum in purto erat, mea ne nominavi persecuti reformidans.</i> Docendi blandit abhorreant ea has, minim tantas alterum pro eu. <span style="color: darkred;">Exerci graeci ad vix, elit tacimates ea duo</span>. Id mel eruditi fuisset. Stet vidit patrioque in pro, eum ex veri verterem abhorreant, id unum oportere intellegam nec<sup>[1, <a href="https://github.com/krispo/angular-nvd3" target="_blank">2</a>, 3]</sup>.',
                 css: {
                     'text-align': 'justify',
@@ -267,8 +211,8 @@ $scope.optionstt = {
                     values: aPrise,      //values - represents the array of {x,y} data points
                     key: 'Prise en main', //key  - the name of the series.
                     color: '#ff7f0e',  //color - optional: choose your own line color.
-                    strokeWidth: 2,
-                    classed: 'dashed'
+                    //strokeWidth: 2,
+                    //classed: 'dashed'
                 },
                 {
                     values: aSerrage,
@@ -279,12 +223,58 @@ $scope.optionstt = {
                     values: aLacher,
                     key: 'Lacher',
                     color: '#7777ff',
-                    area: true      //area - set to true if you want this line to turn into a filled area chart.
+                    //area: true      //area - set to true if you want this line to turn into a filled area chart.
                 }
             ];
         };
 
 
+        //chart Donut dernier entrainement
+        //http://krispo.github.io/angular-nvd3/#/donutChart
+
+         $scope.optionsDonut = {
+            chart: {
+                type: 'pieChart',
+                height: 450,
+                donut: true,
+                x: function(d){return d.key;},
+                y: function(d){return d.y;},
+                showLabels: true,
+
+               // pie: {
+                 //   startAngle: function(d) { return d.startAngle/2 -Math.PI/2 },
+                   // endAngle: function(d) { return d.endAngle/2 -Math.PI/2 }
+                //},
+                duration: 500,
+                legend: {
+                    margin: {
+                        top: 5,
+                        right: 70,
+                        bottom: 5,
+                        left: 0
+                    }
+                }
+            }
+        };
+
+        function lastEntrainement(entrainement){
+            console.log(entrainement.technique.prisemain);
+
+             return [
+                {
+                    key: "Prise en main",      //values - represents the array of {x,y} data points
+                    y:entrainement.technique.prisemain
+                },
+                {
+                    key: "Serrage",      //values - represents the array of {x,y} data points
+                    y:entrainement.technique.serrage
+                },
+                {
+                     key: "Lacher",      //values - represents the array of {x,y} data points
+                    y:entrainement.technique.lacher
+                }
+            ];
+        }
 
 })
  

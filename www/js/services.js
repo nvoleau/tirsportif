@@ -17,13 +17,26 @@ function entrainementService($q) {
         getAllEntrainements: getAllEntrainements,
         addEntrainement: addEntrainement,
         updateEntrainement: updateEntrainement,
-        deleteEntrainement: deleteEntrainement
+        deleteEntrainement: deleteEntrainement,
+        getLastEntrainement:getLastEntrainement
     };
 
     function initDB() {
         // Creates the database or opens if it already exists
-        _db = new PouchDB('shootTir');
+        _db = new PouchDB('shoot2');
         console.log('init');
+
+       _db.createIndex({
+            index: {
+              fields: ['Date'],
+              name:'indDate'
+
+            }
+          })
+
+
+
+          
     };
 
     function addEntrainement(entrainement) { 
@@ -37,7 +50,21 @@ function entrainementService($q) {
     function deleteEntrainement(entrainement) {  
     return $q.when(_db.remove(entrainement));
     };
-    function getAllEntrainements() {  
+  function getAllEntrainements() {  
+
+// renvoi les données
+       var ttt= _db.find({
+                    selector: {Date: {'$gt': null}},
+                    use_index:'indDate',
+                    sort:[{Date:'asc'}]
+
+                  })
+            
+                 console.log(ttt);
+             console.log('ttttttt');
+//// faire la modifs
+
+    return _entrainements;
       if (!_entrainements) {
          return $q.when(_db.allDocs({ include_docs: true}))
               .then(function(docs) {
@@ -63,6 +90,22 @@ function entrainementService($q) {
       }
     };
 
+    
+
+//https://github.com/nolanlawson/pouchdb-find
+    function getLastEntrainement(){
+      console.log("getLastEntrainement");
+       var r = _db.find({
+          selector: {
+            Date: {'$exists': true}
+          },
+          fields:['_id','Date','prisemain'],
+          sort: [{Date: 'desc'}],
+          limit:1
+        });
+console.log("getLastEntrainement" + r);
+       return r.rows;
+    }
 
 
     function onDatabaseChange(change) {  

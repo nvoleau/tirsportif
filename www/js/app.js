@@ -24,6 +24,7 @@ apptir.run(function($ionicPlatform) {
       StatusBar.styleDefault();
     }  
  
-
+  var db="";
     });
+
 })
