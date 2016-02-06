@@ -23,8 +23,7 @@ function entrainementService($q) {
 
     function initDB() {
         // Creates the database or opens if it already exists
-        _db = new PouchDB('shoot2');
-        console.log('init');
+        _db = new PouchDB('shoot');
 
        _db.createIndex({
             index: {
@@ -33,10 +32,6 @@ function entrainementService($q) {
 
             }
           })
-
-
-
-          
     };
 
     function addEntrainement(entrainement) { 
@@ -52,30 +47,22 @@ function entrainementService($q) {
     };
   function getAllEntrainements() {  
 
-// renvoi les données
-       var ttt= _db.find({
+    //return _entrainements;
+      if (!_entrainements) {
+         return $q.when(_db.find({
                     selector: {Date: {'$gt': null}},
                     use_index:'indDate',
                     sort:[{Date:'asc'}]
 
-                  })
-            
-                 console.log(ttt);
-             console.log('ttttttt');
-//// faire la modifs
-
-    return _entrainements;
-      if (!_entrainements) {
-         return $q.when(_db.allDocs({ include_docs: true}))
+                  }))
               .then(function(docs) {
-
                   // Each row has a .doc object and we just want to send an 
                   // array of birthday objects back to the calling controller,
                   // so let's map the array to contain just the .doc objects.
-                  _entrainements = docs.rows.map(function(row) {
+                  _entrainements = docs.docs.map(function(row) {
                       // Dates are not automatically converted from a string.
-                      row.doc.Date = new Date(row.doc.Date);
-                      return row.doc;
+                      row.Date = new Date(row.Date);
+                      return row;
                   });
 
                   // Listen for changes on the database.
@@ -95,16 +82,31 @@ function entrainementService($q) {
 //https://github.com/nolanlawson/pouchdb-find
     function getLastEntrainement(){
       console.log("getLastEntrainement");
-       var r = _db.find({
-          selector: {
-            Date: {'$exists': true}
-          },
-          fields:['_id','Date','prisemain'],
-          sort: [{Date: 'desc'}],
-          limit:1
-        });
-console.log("getLastEntrainement" + r);
-       return r.rows;
+       return $q.when(_db.find({
+                    selector: {Date: {'$gt': null}},
+                    use_index:'indDate',
+                    sort:[{Date:'desc'}],
+                    limit:1
+
+                  }))
+              .then(function(docs) {
+               // console.log(docs)
+                  // Each row has a .doc object and we just want to send an 
+                  // array of birthday objects back to the calling controller,
+                  // so let's map the array to contain just the .doc objects.
+                  var d ;
+
+                  d = docs.docs.map(function(row) {
+                      // Dates are not automatically converted from a string.
+                      row.Date = new Date(row.Date);
+                      return row;
+                  });
+                      
+        
+//console.log(d)
+
+                  return d;
+              });
     }
 
 

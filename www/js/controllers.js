@@ -15,9 +15,11 @@ angular.module('app.controllers', [])
     // Initialize the database.
     $ionicPlatform.ready(function() {
         entrainementService.initDB();
-        console.log("list des entrainements");  
+         
         // Get all birthday records from the database.
         entrainementService.getAllEntrainements().then(function(entrainements) {
+            //console.log("list des entrainements"); 
+            //console.log(entrainements);
             $scope.entrainements = entrainements;
         });
     });
@@ -90,8 +92,7 @@ angular.module('app.controllers', [])
       
         // Initialize the database.
     $ionicPlatform.ready(function() {
-        entrainementService.initDB();
-        console.log("list des entrainements");  
+        entrainementService.initDB(); 
         // Get all birthday records from the database.
         entrainementService.getAllEntrainements().then(function(entrainements) {
               var aAction=[];
@@ -102,34 +103,30 @@ angular.module('app.controllers', [])
 
             t = entrainements;
 
-            console.log(entrainements);
+            //console.log(entrainements);
 
             for (var i = 0; i < t.length; i++) {
                 //console.log(t[i].Language);
-                console.log("-----");
-                if(t[i].technique.prisemain != 'undefined'){
-                    console.log("-----");
-                     console.log(t[i].technique.prisemain);
+                
                     //aAction.push(i+1);
                     aPrise.push(t[i].technique.prisemain);
                     aSerrage.push(t[i].technique.serrage);
                     aLacher.push(t[i].technique.lacher);
-                }
+               
             }
-
-            //$scope.labels = aAction;
-            //$scope.series = ['Prise en Main','Serrage','Lacher'];
-            //$scope.data=[aPrise,aSerrage,aLacher];
-
-            /**$scope.onClick = function (points, evt) {
-                console.log(points, evt);
-            };**/
 
             $scope.data = setDataGraph(entrainements);
 
-            $scope.dataDonut = entrainementService.getLastEntrainement();
-
         });
+
+        entrainementService.getLastEntrainement().then(function(e){
+            console.log("juste");
+                console.log(e);
+                $scope.dataDonut = lastEntrainement(e);
+
+            });
+
+
     });
         
 $scope.options = {
@@ -258,20 +255,27 @@ $scope.options = {
         };
 
         function lastEntrainement(entrainement){
-            console.log(entrainement.technique.prisemain);
+            console.log('entrainement.technique.prisemain');
+            console.log(entrainement[0]);
+            console.log(entrainement[0].technique.prisemain);
+
+            for (var i = 0; i < entrainement.length; i++) {
+                console.log(entrainement[i].technique.prisemain);
+            }
+
 
              return [
                 {
                     key: "Prise en main",      //values - represents the array of {x,y} data points
-                    y:entrainement.technique.prisemain
+                    y:entrainement[0].technique.prisemain
                 },
                 {
                     key: "Serrage",      //values - represents the array of {x,y} data points
-                    y:entrainement.technique.serrage
+                    y:entrainement[0].technique.serrage
                 },
                 {
                      key: "Lacher",      //values - represents the array of {x,y} data points
-                    y:entrainement.technique.lacher
+                    y:entrainement[0].technique.lacher
                 }
             ];
         }
