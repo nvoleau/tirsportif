@@ -1,0 +1,54 @@
+
+    <ion-modal-view> 
+      <ion-header-bar>
+        <h1 class="title">{{ action }} Competition</h1> 
+        <div class="buttons">
+        <button ng-hide="isAdd" ng-click="deleteCompet()" class="button button-icon icon ion-trash-a"></button>
+        </div>
+      </ion-header-bar>
+      <ion-content>
+        <div class="list list-inset">
+          <label class="item item-input">
+          <input type="text" placeholder="Name" ng-model="competition.Name">
+          </label>
+          <label class="item item-input">
+          <input type="date" placeholder="Date" ng-model="competition.Date">
+          </label>
+           <label class="item item-input">
+          <input type="text" placeholder="Heure Début" ng-model="competition.Heure">
+          </label>
+           <label class="item item-input">
+          <input type="text" placeholder="Lieu" ng-model="competition.Lieu">
+          </label>
+
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Discipline
+              </div>
+              <select ng-model="competition.discipline">
+                <option>10m</option>
+                <option>Carabine</option>
+                <option>TSV</option>
+              </select>
+            </label>
+
+
+          <label class="item item-input item-select">
+              <div class="input-label">
+                Importance
+              </div>
+              <selectng ng-model="competition.importance">
+                <option>Amicale</option>
+                <option>Departemental</option>
+                <option>Régionale</option>
+                <option>Nationale</option>
+                <option>Internationale</option>
+              </select>
+            </label>
+        
+        </div>
+        <div class="padding">
+          <button ng-click="startCompet()" class="button button-block button-positive activated">Start</button>
+        </div>
+      </ion-content>
+    </ion-modal-view>

@@ -2,6 +2,7 @@ angular.module('app.services', [])
 
 
 //http://frontmag.no/artikler/utvikling/offline-data-synchronization-ionic
+
 .factory('entrainementService', ['$q', entrainementService]);
 
 function entrainementService($q) {  
@@ -36,8 +37,8 @@ function entrainementService($q) {
 
     function addEntrainement(entrainement) { 
       //permet de classer les documents
-      entrainement._id = entrainement.Date.toJSON()+'/'+new Date().toJSON(); 
-      return $q.when(_db.put(entrainement));
+     // entrainement._id = entrainement.Date.toJSON()+'/'+new Date().toJSON(); 
+      return $q.when(_db.post(entrainement));
     };
     function updateEntrainement(entrainement) {  
     return $q.when(_db.put(entrainement));
@@ -114,18 +115,18 @@ function entrainementService($q) {
     var index = findIndex(_entrainements, change.id);
     var entrainement = _entrainements[index];
 
-    if (change.deleted) {
-        if (entrainement) {
-            _entrainements.splice(index, 1); // delete
-        }
-    } else {
-        if (entrainement && entrainement._id === change.id) {
-            _entrainements[index] = change.doc; // update
+        if (change.deleted) {
+            if (entrainement) {
+                _entrainements.splice(index, 1); // delete
+            }
         } else {
-            _entrainements.splice(index, 0, change.doc) // insert
+            if (entrainement && entrainement._id === change.id) {
+                _entrainements[index] = change.doc; // update
+            } else {
+                _entrainements.splice(index, 0, change.doc) // insert
+            }
         }
     }
-}
 
 // Binary search, the array is by default sorted by _id.
 function findIndex(array, id) {  
@@ -138,4 +139,6 @@ function findIndex(array, id) {
 }
 
 }
+
+
 

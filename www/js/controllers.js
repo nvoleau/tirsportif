@@ -24,17 +24,22 @@ angular.module('app.controllers', [])
         });
     });
 
-    // Initialize the modal view.
-    $ionicModal.fromTemplateUrl('/templates/entrainement.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.modal = modal;
-        console.log("dans modal")
-    });
+
+    //le "." est important sinon le dialog ne se montre pas sur device
+    $ionicModal.fromTemplateUrl('./templates/entrainement.html', {
+  scope: $scope,
+  animation: 'slide-in-up',
+ // backdropClickToClose: false,
+  //hardwareBackButtonClose: false,
+  focusFirstInput: true
+}).then(function(modal) {
+  $scope.modal = modal;
+  console.log($scope.modal);
+});
 
     $scope.showAddEntrainementModal = function() {
         $scope.entrainement = {};
+        $scope.entrainement.type="entrainement";
         $scope.entrainement.technique ={};
         $scope.entrainement.technique.serrage=0;
         $scope.entrainement.technique.prisemain=0;
@@ -79,7 +84,7 @@ angular.module('app.controllers', [])
 
 })
    
-   
+
 .controller('resumeCtrl', function($scope, $ionicPlatform,entrainementService) {
 
  //$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];

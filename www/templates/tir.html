@@ -1,0 +1,43 @@
+<ion-modal-view> 
+      <ion-header-bar>
+        <h1 class="title">Tir</h1> 
+        
+      </ion-header-bar>
+      <ion-content>
+
+        Nombre de Points {{ point }} 
+        <div class="button-bar">
+          <a class="button" ng-click="setPoint(0)">0</a>
+          <a class="button" ng-click="setPoint(1)">1</a>
+          <a class="button" ng-click="setPoint(2)">2</a>
+          <a class="button" ng-click="setPoint(3)">3</a>
+          <a class="button" ng-click="setPoint(4)">4</a>
+          <a class="button" ng-click="setPoint(5)">5</a>
+        </div>
+        <div class="button-bar">
+          <a class="button" ng-click="setPoint(6)">6</a>
+          <a class="button" ng-click="setPoint(7)">7</a>
+          <a class="button" ng-click="setPoint(8)">8</a>
+          <a class="button" ng-click="setPoint(9)">9</a>
+          <a class="button" ng-click="setPoint(10)">10</a>
+        </div>
+
+               Décimales
+        <div class="button-bar">
+          <a class="button" ng-click="setDecimal(0.1)">1</a>
+          <a class="button" ng-click="setDecimal(0.2)">2</a>
+          <a class="button" ng-click="setDecimal(0.3)">3</a>
+          <a class="button" ng-click="setDecimal(0.4)">4</a>
+          <a class="button" ng-click="setDecimal(0.5)">5</a>
+        </div>
+        <div class="button-bar">
+          <a class="button" ng-click="setDecimal(0.6)">6</a>
+          <a class="button" ng-click="setDecimal(0.7)">7</a>
+          <a class="button" ng-click="setDecimal(0.8)">8</a>
+          <a class="button" ng-click="setDecimal(0.9)">9</a>
+        </div>
+        <div class="padding">
+          <button ng-click="saveCompet()" class="button button-block button-positive activated">Enregistrer</button>
+        </div>
+      </ion-content>
+    </ion-modal-view>
