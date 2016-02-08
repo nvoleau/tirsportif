@@ -4,13 +4,14 @@
         
       </ion-header-bar>
       <ion-content>
-      <div class="padding">
+      <div class="padding" ng-show="b_pauseDeb">
           <button ng-click="setPauseDeb()" class="button button-block button-positive activated">Debut Pause</button>
         </div>
-        <div class="padding">
+        <div class="padding" ng-show="b_pauseFin">
           <button ng-click="setPauseFin()" class="button button-block button-positive activated">Fin Pause</button>
         </div>
 
+      <div ng-show="b_pauseDeb">
         Nombre de Points {{ point }} 
         <div class="button-bar">
           <a class="round-btn" ng-click="setPoint(0)">0</a><span> </span>
@@ -44,6 +45,8 @@
         </div>
         <div class="padding">
           <button ng-click="nextShoot()" class="button button-block button-positive activated">Suivant</button>
+        </div>
+
         </div>
       </ion-content>
     </ion-modal-view>

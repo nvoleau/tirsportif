@@ -2,6 +2,8 @@ angular.module('app.controllersComp', [])
 
 .controller('competitionsCtrl', function($scope, $ionicModal,$ionicPlatform,competitionService) {
 
+	$scope.b_pauseDeb=true;
+	$scope.b_pauseFin=false;
 
 var points=[];
 
@@ -101,6 +103,9 @@ var evt = null;
         evt = evt + 1;
         points.push(tir);
         console.log(points);
+
+        $scope.b_pauseDeb=false;
+		$scope.b_pauseFin=true;
     };
 
     $scope.setPauseFin = function() {
@@ -113,6 +118,8 @@ var evt = null;
         evt = evt + 1;
         points.push(tir);
         console.log(points);
+        $scope.b_pauseDeb=true;
+		$scope.b_pauseFin=false;
     };
 
 
