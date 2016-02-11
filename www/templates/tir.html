@@ -12,40 +12,56 @@
         </div>
 
       <div ng-show="b_pauseDeb">
-        Nombre de Points {{ point }} 
-        <div class="button-bar">
-          <a class="round-btn" ng-click="setPoint(0)">0</a><span> </span>
-          <a class="round-btn" ng-click="setPoint(1)">1</a> <span> </span>
-          <a class="round-btn" ng-click="setPoint(2)">2</a> <span> </span>
-          <a class="round-btn" ng-click="setPoint(3)">3</a> <span> </span>
-          <a class="round-btn" ng-click="setPoint(4)">4</a> <span> </span>
-          <a class="round-btn" ng-click="setPoint(5)">5</a> <span> </span>
-        </div>
-        <div class="button-bar">
-          <a class="round-btn" ng-click="setPoint(6)">6</a> <span> </span>
-          <a class="round-btn" ng-click="setPoint(7)">7</a> <span> </span>
-          <a class="round-btn" ng-click="setPoint(8)">8</a> <span> </span>
-          <a class="round-btn" ng-click="setPoint(9)">9</a> <span> </span>
-          <a class="round-btn" ng-click="setPoint(10)">10</a>
-        </div>
+        <h1>TIR N° {{ shoot }} </h1>Nombre de Points {{ point }} 
+        <div ng-show="b_unite">
+          <h2>Unité</h2>
+          <div class="button-bar">
+            <a class="button button-calm" ng-click="setPoint(0)">0</a>
+            <a class="button button-assertive" ng-click="setPoint(10)">10</a>
+          </div>
+          <br>
+          <div class="button-bar">
+            <a class="button button-outline button-positive" ng-click="setPoint(9)">9</a>
+            <a class="button button-outline button-positive" ng-click="setPoint(8)">8</a>
+            <a class="button button-outline button-positive" ng-click="setPoint(7)">7</a>
+          </div>
+           <div class="button-bar">
+            <a class="button button-outline button-positive" ng-click="setPoint(6)">6</a>
+            <a class="button button-outline button-positive" ng-click="setPoint(5)">5</a>
+            <a class="button button-outline button-positive" ng-click="setPoint(4)">4</a>
+          </div>
+          <div class="button-bar">
+            <a class="button button-outline button-positive" ng-click="setPoint(3)">3</a>
+            <a class="button button-outline button-positive" ng-click="setPoint(2)">2</a>
+            <a class="button button-outline button-positive" ng-click="setPoint(1)">1</a>
+          </div>
+        </div>  
+        <div ng-show="b_decimal">
+          <h2>Décimale</h2>
+          <br>
+          <div class="button-bar">
+            <a class="button button-outline button-positive" ng-click="setDecimal(0.9)">0,9</a>
+            <a class="button button-outline button-positive" ng-click="setDecimal(0.8)">0,8</a>
+            <a class="button button-outline button-positive" ng-click="setDecimal(0.7)">0,7</a>
+          </div>
+           <div class="button-bar">
+            <a class="button button-outline button-positive" ng-click="setDecimal(0.6)">0,6</a>
+            <a class="button button-outline button-positive" ng-click="setDecimal(0.5)">0,5</a>
+            <a class="button button-outline button-positive" ng-click="setDecimal(0.4)">0,4</a>
+          </div>
+          <div class="button-bar">
+            <a class="button button-outline button-positive" ng-click="setDecimal(0.3)">0,3</a>
+            <a class="button button-outline button-positive" ng-click="setDecimal(0.2)">0,2</a>
+            <a class="button button-outline button-positive" ng-click="setDecimal(0.1)">0,1</a>
+          </div>
+        </div>  
 
-               Décimales
-        <div class="button-bar">
-          <a class="round-btn" ng-click="setDecimal(0.1)">1</a>
-          <a class="round-btn" ng-click="setDecimal(0.2)">2</a>
-          <a class="round-btn" ng-click="setDecimal(0.3)">3</a>
-          <a class="round-btn" ng-click="setDecimal(0.4)">4</a>
-          <a class="round-btn" ng-click="setDecimal(0.5)">5</a>
-        </div>
-        <div class="button-bar">
-          <a class="round-btn" ng-click="setDecimal(0.6)">6</a>
-          <a class="round-btn" ng-click="setDecimal(0.7)">7</a>
-          <a class="round-btn" ng-click="setDecimal(0.8)">8</a>
-          <a class="round-btn" ng-click="setDecimal(0.9)">9</a>
-        </div>
-        <div class="padding">
+      </div>
+
+
+       <!-- <div class="padding">
           <button ng-click="nextShoot()" class="button button-block button-positive activated">Suivant</button>
-        </div>
+        </div>-->
 
         </div>
       </ion-content>

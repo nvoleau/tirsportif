@@ -65,15 +65,21 @@ var evt = null;
         tir.date = new Date();
         points.push(tir);
 
+        $scope.shoot=shoot;
         $scope.point = 0;
+        $scope.b_unite=true; 
+        $scope.b_decimal=false; 
         console.log("Start " + shoot);
+        //on ouvre la fenetre
         $scope.modalStartCompet.show();           
     };
 
    
  
 
-    $scope.nextShoot = function() {
+    $scope.nextShoot = nextShoot();
+
+    function nextShoot(){
         var tir = {};
         tir.action="tir";
         tir.evt = evt;
@@ -84,12 +90,15 @@ var evt = null;
         //on reinit
         $scope.point = 0;
         shoot=shoot + 1;
-        evt = evt + 1;     
+        $scope.shoot=shoot;
+        evt = evt + 1;   
+        $scope.b_unite=true;  
+        $scope.b_decimal=false; 
 
         console.log(tir);
         points.push(tir);
         console.log(points);
-    };
+    }
 
 
 
@@ -125,13 +134,23 @@ var evt = null;
 
     $scope.setPoint = function(nb) {
         console.log("nb point "+nb); 
-        $scope.point=nb;         
+        $scope.point=nb;
+
+        if(nb==0 || nb==10){
+            nextShoot();
+        }else{
+            $scope.b_unite=false; 
+            $scope.b_decimal=true;   
+        }      
     };
 
     $scope.setDecimal = function(nb) {
         console.log("nb decimal "+nb); 
         console.log("nb point "+$scope.point); 
-        $scope.point=$scope.point+nb;         
+        $scope.point=$scope.point+nb; 
+        $scope.b_unite=true;   
+        $scope.b_decimal=false; 
+        nextShoot();     
     };
 
 });   
