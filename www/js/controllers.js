@@ -197,8 +197,8 @@ $scope.options = {
    
         function setDataGraph(entrainements) {
             var aPrise = [];
-              var aSerrage = [];
-                var aLacher = [];
+            var aSerrage = [];
+            var aLacher = [];
 
             //Data is represented as an array of {x,y} pairs.
             for (var i = 0; i < entrainements.length; i++) {

@@ -6,12 +6,15 @@ angular.module('app.controllersComp', [])
 	$scope.b_pauseFin=false;
 
 var points=[];
+var total = 0;
 
     //$scope.competitions = competitions;
     $ionicPlatform.ready(function() {
        	competitionService.initDB(); 
         // Get all birthday records from the database.
+         console.log("---------------avnt competitions-----------");
         competitionService.getAllCompetitions().then(function(competitions) {
+            console.log("---------------competitions-----------");
         	console.log(competitions);
 				$scope.competitions = competitions;
 
@@ -45,6 +48,7 @@ var points=[];
 
     $scope.showAddCompetitionModal = function() {
         $scope.competition = {};
+        $scope.competition.seance = {};
         $scope.competition.type="competition";
         $scope.action = 'Add';
         $scope.isAdd = true;
@@ -80,12 +84,18 @@ var evt = null;
     $scope.nextShoot = nextShoot();
 
     function nextShoot(){
-        var tir = {};
+        //total de points
+        total = total + $scope.points;
+
+         var tir = {};
         tir.action="tir";
         tir.evt = evt;
         tir.nb = shoot;        
         tir.points = $scope.point;
         tir.date = new Date();
+        console.log(tir);
+        points.push(tir);
+        console.log(points);
 
         //on reinit
         $scope.point = 0;
@@ -95,9 +105,15 @@ var evt = null;
         $scope.b_unite=true;  
         $scope.b_decimal=false; 
 
-        console.log(tir);
-        points.push(tir);
-        console.log(points);
+
+        if(shoot==5){
+            console.log("save");
+            saveCompetition();
+        }
+   
+
+        
+        
     }
 
 
@@ -126,7 +142,7 @@ var evt = null;
         $scope.point = 0;
         evt = evt + 1;
         points.push(tir);
-        console.log(points);
+        //console.log(points);
         $scope.b_pauseDeb=true;
 		$scope.b_pauseFin=false;
     };
@@ -145,12 +161,22 @@ var evt = null;
     };
 
     $scope.setDecimal = function(nb) {
-        console.log("nb decimal "+nb); 
-        console.log("nb point "+$scope.point); 
+        //console.log("nb decimal "+nb); 
+        //console.log("nb point "+$scope.point); 
         $scope.point=$scope.point+nb; 
         $scope.b_unite=true;   
         $scope.b_decimal=false; 
         nextShoot();     
     };
+
+
+    //enregistrement de la compétition
+    function saveCompetition(){
+            $scope.competition.seance = points;
+            $scope.competition.total = total;
+            console.log($scope.competition);
+           competitionService.addCompetition($scope.competition); 
+           $scope.modalStartCompet.hide();       
+    }
 
 });   
