@@ -64,6 +64,9 @@ var shoot = null;
 var evt = null;
 var total = 0;
 
+var sdeb = null;
+var sfin = null;
+
     $scope.startCompet = function() {
         shoot = 1;
         evt = 1;
@@ -71,6 +74,7 @@ var total = 0;
         tir.evt=0;
         tir.action="Start";
         tir.date = new Date();
+        tir.seq = 0;
         points.push(tir);
 
         $scope.shoot=shoot;
@@ -79,7 +83,8 @@ var total = 0;
         $scope.b_unite=true; 
         $scope.b_decimal=false; 
         $scope.competition.date_start = new Date();
-        console.log("Start " + shoot);
+        sdeb = new Date();
+        //console.log("Start " + shoot);
         //on ouvre la fenetre
         $scope.modalStartCompet.show();           
     };
@@ -99,6 +104,9 @@ var total = 0;
         tir.nb = shoot;        
         tir.points = $scope.point;
         tir.date = new Date();
+        tir.seq = (new Date() - sdeb)/1000;
+
+
         console.log(tir);
         points.push(tir);
         console.log(points);
@@ -117,8 +125,6 @@ var total = 0;
             saveCompetition();
         }
    
-
-        
         
     }
 
@@ -129,11 +135,13 @@ var total = 0;
         tir.action="pause";
         tir.evt = evt;
         tir.date = new Date();
+        tir.seq = (new Date() - sdeb)/1000;
+        tir.points =10
         //on reinit
         $scope.point = 0;
         evt = evt + 1;
         points.push(tir);
-        console.log(points);
+        //console.log(points);
 
         $scope.b_pauseDeb=false;
 		$scope.b_pauseFin=true;
@@ -144,6 +152,9 @@ var total = 0;
         tir.action="pause";
         tir.evt = evt;
         tir.date = new Date();
+        tir.seq = (new Date() - sdeb)/1000;
+        tir.points =10
+
         //on reinit
         $scope.point = 0;
         evt = evt + 1;
@@ -155,7 +166,7 @@ var total = 0;
 
 
     $scope.setPoint = function(nb) {
-        console.log("nb point "+nb); 
+        //console.log("nb point "+nb); 
         $scope.point=nb;
 
         if(nb==0 || nb==10){
@@ -224,11 +235,13 @@ var total = 0;
 
 
             //Data is represented as an array of {x,y} pairs.
-            for (var i = 0; i < seance.length; i++) {
+            for (var i = 1; i < seance.length; i++) {
                 if (seance[i].action=='tir'){
-                    aTir.push({x:new Date(seance[i].date),y:seance[i].points})
+                    aTir.push({x:seance[i].seq,y:seance[i].points});
+                    aPause.push({x:seance[i].seq,y:0});
                 }else if(seance[i].action=='pause'){
-                    aPause.push({x:new Date(seance[i].date),y:10})
+                    aPause.push({x:seance[i].seq,y:seance[i].points});
+                    aTir.push({x:seance[i].seq,y:0});
                 }
                 
             }
@@ -238,7 +251,7 @@ var total = 0;
                 {
                     values: aTir,      //values - represents the array of {x,y} data points
                     key: 'Points', //key  - the name of the series.
-                    color: '#ff7f0e',  //color - optional: choose your own line color.
+                    //color: '#ff7f0e',  //color - optional: choose your own line color.
                     //strokeWidth: 2,
                     //classed: 'dashed'
                 }/**,
@@ -277,10 +290,13 @@ $scope.options = {
                     tooltipHide: function(e){ console.log("tooltipHide"); }
                 },
                 xAxis: {
-                    axisLabel: 'Date',
-                    tickFormat: function(d) {
-                        return d3.time.format('%H:%M:%S')(new Date(d))
-                    }
+                    axisLabel: 'Secondes',
+                    tickFormat: function(d){
+                        return d3.format('.0f')(d);
+                    },//,
+                    //tickFormat: function(d) {
+                    //    return d3.time.format('%H:%M:%S')(new Date(d))
+                    //}
                 },
                 yAxis: {
                     axisLabel: 'Points',
