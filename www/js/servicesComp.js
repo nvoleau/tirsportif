@@ -25,11 +25,20 @@ var _competitions;
         // Creates the database or opens if it already exists
         _db = new PouchDB('shootv1');
 
+         _db.createIndex({
+            index: {
+              fields: ['type'],
+              name:'indType'
+
+            }
+          })
+
     };
 
     function addCompetition(competition) { 
       //permet de classer les documents
      // entrainement._id = entrainement.Date.toJSON()+'/'+new Date().toJSON(); 
+     console.log('---------add-------------');
       return $q.when(_db.post(competition));
     };
     function updateCompetition(competition) {  
@@ -42,9 +51,12 @@ var _competitions;
       //return _entrainements;
       if (!_competitions) {
          return $q.when(_db.find({
-                    selector: {type:"competition"}
+                    selector: {type:"competition"},
+                    use_index:'indType',
                   }))
               .then(function(docs) {
+                console.log('-----------result compets ---------------')
+                 console.log(docs);
                   // Each row has a .doc object and we just want to send an 
                   // array of birthday objects back to the calling controller,
                   // so let's map the array to contain just the .doc objects.

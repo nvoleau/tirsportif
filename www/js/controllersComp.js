@@ -6,7 +6,7 @@ angular.module('app.controllersComp', [])
 	$scope.b_pauseFin=false;
 
 var points=[];
-var total = 0;
+
 
     //$scope.competitions = competitions;
     $ionicPlatform.ready(function() {
@@ -59,6 +59,7 @@ var total = 0;
 
 var shoot = null;
 var evt = null;
+var total = 0;
 
     $scope.startCompet = function() {
         shoot = 1;
@@ -70,9 +71,11 @@ var evt = null;
         points.push(tir);
 
         $scope.shoot=shoot;
+        $scope.total = 0;
         $scope.point = 0;
         $scope.b_unite=true; 
         $scope.b_decimal=false; 
+        $scope.competition.date_start = new Date();
         console.log("Start " + shoot);
         //on ouvre la fenetre
         $scope.modalStartCompet.show();           
@@ -85,7 +88,7 @@ var evt = null;
 
     function nextShoot(){
         //total de points
-        total = total + $scope.points;
+        $scope.total = $scope.total + $scope.point;
 
          var tir = {};
         tir.action="tir";
@@ -173,10 +176,14 @@ var evt = null;
     //enregistrement de la compétition
     function saveCompetition(){
             $scope.competition.seance = points;
-            $scope.competition.total = total;
+            $scope.competition.total = $scope.total ;
+            $scope.competition.date_stop = new Date();
+            console.log('-------save---------')
             console.log($scope.competition);
            competitionService.addCompetition($scope.competition); 
-           $scope.modalStartCompet.hide();       
+           console.log('------- finsave---------')
+           $scope.modalStartCompet.hide();  
+           $scope.modal.hide();     
     }
 
 });   
