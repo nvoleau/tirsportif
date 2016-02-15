@@ -19,6 +19,9 @@ var points=[];
 				$scope.competitions = competitions;
 
         });
+
+        //var seea
+         
     });
 
      //le "." est important sinon le dialog ne se montre pas sur device
@@ -109,7 +112,7 @@ var total = 0;
         $scope.b_decimal=false; 
 
 
-        if(shoot==5){
+        if(shoot==15){
             console.log("save");
             saveCompetition();
         }
@@ -123,7 +126,7 @@ var total = 0;
 
     $scope.setPauseDeb = function() {
         var tir = {};
-        tir.action="Pause";
+        tir.action="pause";
         tir.evt = evt;
         tir.date = new Date();
         //on reinit
@@ -138,7 +141,7 @@ var total = 0;
 
     $scope.setPauseFin = function() {
         var tir = {};
-        tir.action="Pause";
+        tir.action="pause";
         tir.evt = evt;
         tir.date = new Date();
         //on reinit
@@ -185,5 +188,133 @@ var total = 0;
            $scope.modalStartCompet.hide();  
            $scope.modal.hide();     
     }
+
+
+
+//SHOW COMPET
+  //le "." est important sinon le dialog ne se montre pas sur device
+    $ionicModal.fromTemplateUrl('./templates/showcompet.html', {
+  scope: $scope,
+  animation: 'slide-in-up',
+ // backdropClickToClose: false,
+  //hardwareBackButtonClose: false,
+  focusFirstInput: true
+}).then(function(modal) {
+  $scope.showcompet = modal;
+  console.log($scope.modal);
+});
+
+  $scope.showEditCompetitionModal = function(competition) {
+        $scope.competition = competition;
+        $scope.data = setDataGraph(competition.seance);
+        $scope.action = 'Edit';
+        //$scope.isAdd = false;          
+        $scope.showcompet.show();
+
+    };
+
+
+
+//graphique
+//$scope.data = setDataGraph($scope.competition.seance);
+
+  function setDataGraph(seance) {
+            var aTir = [];
+            var aPause = [];
+
+
+            //Data is represented as an array of {x,y} pairs.
+            for (var i = 0; i < seance.length; i++) {
+                if (seance[i].action=='tir'){
+                    aTir.push({x:new Date(seance[i].date),y:seance[i].points})
+                }else if(seance[i].action=='pause'){
+                    aPause.push({x:new Date(seance[i].date),y:10})
+                }
+                
+            }
+
+            //Line chart data should be sent as an array of series objects.
+            return [
+                {
+                    values: aTir,      //values - represents the array of {x,y} data points
+                    key: 'Points', //key  - the name of the series.
+                    color: '#ff7f0e',  //color - optional: choose your own line color.
+                    //strokeWidth: 2,
+                    //classed: 'dashed'
+                }/**,
+                {
+                    values: aSerrage,
+                    key: 'Serrage',
+                    color: '#2ca02c'
+                }*/ ,
+                {
+                    values: aPause,
+                    key: 'Pause',
+                    color: '#7777ff',
+                    area: true      //area - set to true if you want this line to turn into a filled area chart.
+                }
+            ];
+        };
+
+
+$scope.options = {
+            chart: {
+                type: 'lineChart',
+                height: 450,
+                margin : {
+                    top: 20,
+                    right: 20,
+                    bottom: 40,
+                    left: 55
+                },
+                x: function(d){ return d.x; },
+                y: function(d){ return d.y; },
+                useInteractiveGuideline: true,
+                dispatch: {
+                    stateChange: function(e){ console.log("stateChange"); },
+                    changeState: function(e){ console.log("changeState"); },
+                    tooltipShow: function(e){ console.log("tooltipShow"); },
+                    tooltipHide: function(e){ console.log("tooltipHide"); }
+                },
+                xAxis: {
+                    axisLabel: 'Date',
+                    tickFormat: function(d) {
+                        return d3.time.format('%H:%M:%S')(new Date(d))
+                    }
+                },
+                yAxis: {
+                    axisLabel: 'Points',
+                    tickFormat: function(d){
+                        return d3.format('.0f')(d);
+                    },
+                    axisLabelDistance: -10
+                },
+                callback: function(chart){
+                    console.log("!!! lineChart callback !!!");
+                }
+            },
+            title: {
+                enable: true,
+                text: 'Competition'
+            },
+            subtitle: {
+                enable: false,
+                text: 'Subtitle for simple line chart. Lorem ipsum dolor sit amet, at eam blandit sadipscing, vim adhuc sanctus disputando ex, cu usu affert alienum urbanitas.',
+                css: {
+                    'text-align': 'center',
+                    'margin': '10px 13px 0px 7px'
+                }
+            },
+            caption: {
+                enable: false,
+                html: '<b>Figure 1.</b> Lorem ipsum dolor sit amet, at eam blandit sadipscing, <span style="text-decoration: underline;">vim adhuc sanctus disputando ex</span>, cu usu affert alienum urbanitas. <i>Cum in purto erat, mea ne nominavi persecuti reformidans.</i> Docendi blandit abhorreant ea has, minim tantas alterum pro eu. <span style="color: darkred;">Exerci graeci ad vix, elit tacimates ea duo</span>. Id mel eruditi fuisset. Stet vidit patrioque in pro, eum ex veri verterem abhorreant, id unum oportere intellegam nec<sup>[1, <a href="https://github.com/krispo/angular-nvd3" target="_blank">2</a>, 3]</sup>.',
+                css: {
+                    'text-align': 'justify',
+                    'margin': '10px 13px 0px 7px'
+                }
+            }
+        };
+
+
 
 });   

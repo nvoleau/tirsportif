@@ -62,7 +62,7 @@ var _competitions;
                   // so let's map the array to contain just the .doc objects.
                   _competitions = docs.docs.map(function(row) {
                       // Dates are not automatically converted from a string.
-                      //row.Date = new Date(row.Date);
+                      //row.seance.date = new Date(row.Date);
                       return row;
                   });
 
