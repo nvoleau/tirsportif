@@ -1,7 +1,7 @@
 <ion-modal-view>
-    <ion-content>
-            <div style="float: left"> {{competition.Name}} - {{competition.discipline}}</div>
-            <div style="float: right">{{competition.total}}</div>
+     <ion-content overflow-scroll="true" padding="true" class="has-header">
+            <div> {{competition.Name}} - {{competition.discipline}}</div>
+            <div>{{competition.total}}</div>
 
             <div class="card">
                 <nvd3 options="options" data="data"></nvd3>

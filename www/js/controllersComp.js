@@ -273,7 +273,7 @@ var sfin = null;
 $scope.options = {
             chart: {
                 type: 'lineChart',
-                height: 450,
+                height: 200,
                 margin : {
                     top: 20,
                     right: 20,
@@ -282,6 +282,7 @@ $scope.options = {
                 },
                 x: function(d){ return d.x; },
                 y: function(d){ return d.y; },
+                interpolate :'basis',
                 useInteractiveGuideline: true,
                 dispatch: {
                     stateChange: function(e){ console.log("stateChange"); },
@@ -297,6 +298,7 @@ $scope.options = {
                     //tickFormat: function(d) {
                     //    return d3.time.format('%H:%M:%S')(new Date(d))
                     //}
+
                 },
                 yAxis: {
                     axisLabel: 'Points',
