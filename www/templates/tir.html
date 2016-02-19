@@ -4,15 +4,17 @@
         
       </ion-header-bar>
       <ion-content>
-      <div class="padding" ng-show="b_pauseDeb">
+     
+
+      <div>
+        <h1>TIR N° {{ shoot }} </h1>Nombre de Points {{ total }} 
+         <div class="padding" ng-show="b_pauseDeb">
           <button ng-click="setPauseDeb()" class="button button-block button-positive activated">Debut Pause</button>
         </div>
         <div class="padding" ng-show="b_pauseFin">
           <button ng-click="setPauseFin()" class="button button-block button-positive activated">Fin Pause</button>
         </div>
 
-      <div ng-show="b_pauseDeb">
-        <h1>TIR N° {{ shoot }} </h1>Nombre de Points {{ point }} 
         <div ng-show="b_unite">
           <h2>Unité</h2>
           <div class="button-bar">

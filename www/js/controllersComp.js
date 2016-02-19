@@ -63,11 +63,13 @@ var points=[];
 var shoot = null;
 var evt = null;
 var total = 0;
+var nbCoupTotal=0;
 
 var sdeb = null;
 var sfin = null;
 
-    $scope.startCompet = function() {
+    $scope.startCompet = function(nb) {
+        nbCoupTotal=nb;
         shoot = 1;
         evt = 1;
         var tir = {};
@@ -95,6 +97,8 @@ var sfin = null;
     $scope.nextShoot = nextShoot();
 
     function nextShoot(){
+          $scope.b_pauseDeb=true;
+        $scope .b_pauseFin=false; 
         //total de points
         $scope.total = $scope.total + $scope.point;
 
@@ -119,8 +123,11 @@ var sfin = null;
         $scope.b_unite=true;  
         $scope.b_decimal=false; 
 
+        //comp={};
+        //comp=$scope.competition
+        console.log("nbCoupTotal "+nbCoupTotal);
 
-        if(shoot==15){
+        if(shoot==nbCoupTotal){
             console.log("save");
             saveCompetition();
         }
@@ -145,6 +152,9 @@ var sfin = null;
 
         $scope.b_pauseDeb=false;
 		$scope.b_pauseFin=true;
+
+        $scope.b_unite=false;  
+        $scope.b_decimal=false; 
     };
 
     $scope.setPauseFin = function() {
@@ -162,6 +172,9 @@ var sfin = null;
         //console.log(points);
         $scope.b_pauseDeb=true;
 		$scope.b_pauseFin=false;
+
+        $scope.b_unite=true;  
+        $scope.b_decimal=false; 
     };
 
 
@@ -173,7 +186,10 @@ var sfin = null;
             nextShoot();
         }else{
             $scope.b_unite=false; 
-            $scope.b_decimal=true;   
+            $scope.b_decimal=true;
+
+            $scope.b_pauseDeb=false;
+            $scope .b_pauseFin=false;   
         }      
     };
 
